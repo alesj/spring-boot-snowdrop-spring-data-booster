@@ -32,7 +32,7 @@
 
             $scope.form = {
                 id: -1,
-                name: ""
+                title: ""
             };
 
             //Now load the data from server
@@ -47,12 +47,12 @@
                     //Id is absent so add fruits - POST operation
                     method = "POST";
                     url = '/api/fruits';
-                    data.name = $scope.form.name;
+                    data.title = $scope.form.title;
                 } else {
                     //If Id is present, it's edit operation - PUT operation
                     method = "PUT";
                     url = '/api/fruits/' + $scope.form.id;
-                    data.name = $scope.form.name;
+                    data.title = $scope.form.title;
                 }
 
                 $http({
@@ -75,7 +75,7 @@
 
             //In case of edit fruits, populate form with fruit data
             $scope.edit = function (fruit) {
-                $scope.form.name = fruit.name;
+                $scope.form.title = fruit.title;
                 $scope.form.id = fruit.id;
             };
 
@@ -104,7 +104,7 @@
 
             //Clear the form
             function _clearForm() {
-                $scope.form.name = "";
+                $scope.form.title = "";
                 $scope.form.id = -1;
             }
         });
@@ -124,7 +124,7 @@
     <h3>Add/Edit a fruit</h3>
     <form ng-submit="update()">
         <div class="row">
-            <div class="col-6"><input type="text" placeholder="Name" ng-model="form.name" size="60"/></div>
+            <div class="col-6"><input type="text" placeholder="Name" ng-model="form.title" size="60"/></div>
         </div>
         <input type="submit" value="Save"/>
     </form>
@@ -134,7 +134,7 @@
         <div class="col-2">Name</div>
     </div>
     <div class="row" ng-repeat="fruit in fruits">
-        <div class="col-2">{{ fruit.name }}</div>
+        <div class="col-2">{{ fruit.title }}</div>
         <div class="col-8"><a ng-click="edit( fruit )" class="btn">Edit</a> <a ng-click="remove( fruit )" class="btn">Remove</a>
         </div>
     </div>

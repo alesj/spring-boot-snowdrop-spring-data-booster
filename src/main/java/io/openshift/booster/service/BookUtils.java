@@ -16,22 +16,15 @@
 
 package io.openshift.booster.service;
 
-public enum FruitEnum {
-    CHERRY(1, "Cherry", "Cherry was a brand of keyboard."),
-    APPLE(2, "Apple", "Apple headquerter is in Cupertino."),
-    BANANA(3, "Banana", "Monkies like bananas.");
+import java.util.Collections;
+import java.util.Set;
+import java.util.TreeSet;
 
-    private int id;
-    private String name;
-    private String usage;
+public final class BookUtils {
+    public static int generateNextId(Iterable<Book> all) {
+        final Set<Integer> ids = new TreeSet<>(Collections.reverseOrder());
+        all.forEach(fruit -> ids.add(fruit.getId()));
+        return (ids.isEmpty() ? 1 : (ids.iterator().next() + 1));
 
-    FruitEnum(int id, String name, String usage) {
-        this.id = id;
-        this.name = name;
-        this.usage = usage;
-    }
-
-    public Fruit toFruit() {
-        return new Fruit(id, name, usage);
     }
 }

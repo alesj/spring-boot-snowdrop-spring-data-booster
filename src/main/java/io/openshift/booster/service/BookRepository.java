@@ -16,8 +16,19 @@
 
 package io.openshift.booster.service;
 
-import me.snowdrop.data.hibernatesearch.repository.HibernateSearchCrudRepository;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Stream;
 
-public interface FruitRepository extends HibernateSearchCrudRepository<Fruit, Integer> {
-    Fruit findByUsageContains(String word);
+import me.snowdrop.data.hibernatesearch.repository.HibernateSearchCrudRepository;
+import org.springframework.data.domain.Pageable;
+
+public interface BookRepository extends HibernateSearchCrudRepository<Book, Integer> {
+    Stream<Book> findByTitleLike(String title);
+
+    List<Book> findByReleaseDate(LocalDate date);
+
+    List<Book> findByAuthor(String author);
+
+    List<Book> findByContentContains(String content, Pageable pageable);
 }
