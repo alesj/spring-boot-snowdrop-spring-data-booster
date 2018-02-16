@@ -20,7 +20,7 @@
             font-family: 'Open Sans', serif;
         }
     </style>
-    <script src="awesomplete.js" async></script>
+    <script src="awesomplete.min.js" async></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         function search() {
@@ -61,13 +61,18 @@
             };
             ajax.send();
         }
+
+
+        $(document).ready(function () {
+            $("#author").on("keyup", authors);
+        });
     </script>
 </head>
 <body ng-app="BookManagement" ng-controller="BookManagementController">
 
 <div>
     Author:
-    <input id="author" name="author" class="awesomplete" list="authors" onchange="authors();">
+    <input id="author" name="author" class="awesomplete" list="authors">
     <br> Content:
     <input type="text" id="content" name="content">
     <br> Release date:
